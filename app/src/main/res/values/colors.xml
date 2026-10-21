@@ -7,4 +7,6 @@
     <color name="ink">#4B4B4B</color>
     <color name="muted">#A3A099</color>
     <color name="border">#111111</color>
+    <!-- app icon background (unchanged) -->
+    <color name="wang_red">#E23B2E</color>
 </resources>
