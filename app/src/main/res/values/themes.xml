@@ -1,0 +1,62 @@
+<resources>
+    <style name="Theme.WangRadio" parent="Theme.Material3.Light.NoActionBar">
+        <item name="colorPrimary">@color/primary</item>
+        <item name="colorOnPrimary">@color/on_primary</item>
+        <item name="colorSecondary">@color/border</item>
+        <item name="colorSurface">@color/card</item>
+        <item name="colorOnSurface">@color/ink</item>
+        <item name="android:colorBackground">@color/surface</item>
+        <item name="android:windowBackground">@color/surface</item>
+        <item name="android:statusBarColor">@color/surface</item>
+        <item name="android:navigationBarColor">@color/surface</item>
+        <item name="android:windowLightStatusBar">true</item>
+        <item name="android:windowLightNavigationBar">true</item>
+        <item name="android:fontFamily">@font/dmsans</item>
+        <item name="fontFamily">@font/dmsans</item>
+        <item name="android:textColor">@color/ink</item>
+        <item name="android:textColorHint">@color/muted</item>
+        <item name="colorControlActivated">@color/border</item>
+        <item name="android:textCursorDrawable">@null</item>
+    </style>
+
+    <!-- Uppercase micro-label: DM Sans Bold, 0.2em tracking. Never lowercase it. -->
+    <style name="Kicker">
+        <item name="android:fontFamily">@font/dmsans</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">10sp</item>
+        <item name="android:letterSpacing">0.2</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:textColor">@color/ink</item>
+        <item name="android:includeFontPadding">false</item>
+    </style>
+    <style name="Serif">
+        <item name="android:fontFamily">@font/fraunces</item>
+        <item name="android:textColor">@color/ink</item>
+        <item name="android:letterSpacing">-0.01</item>
+    </style>
+    <style name="SerifItalic" parent="Serif">
+        <item name="android:textStyle">italic</item>
+    </style>
+    <style name="IconButton">
+        <item name="android:layout_width">52dp</item>
+        <item name="android:layout_height">52dp</item>
+        <item name="android:background">@drawable/box_4</item>
+        <item name="android:paddingStart">12dp</item>
+        <item name="android:paddingTop">12dp</item>
+        <item name="android:paddingEnd">16dp</item>
+        <item name="android:paddingBottom">16dp</item>
+        <item name="android:scaleType">fitCenter</item>
+        <item name="tint">@color/ink</item>
+    </style>
+    <style name="Field">
+        <item name="android:background">@drawable/field</item>
+        <item name="android:paddingStart">12dp</item>
+        <item name="android:paddingEnd">12dp</item>
+        <item name="android:paddingTop">10dp</item>
+        <item name="android:paddingBottom">10dp</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/ink</item>
+        <item name="android:fontFamily">@font/dmsans</item>
+        <item name="android:minHeight">48dp</item>
+    </style>
+</resources>

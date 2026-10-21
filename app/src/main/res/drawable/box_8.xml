@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Hard 8dp offset shadow + 3dp charcoal border, square corners. -->
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_pressed="true"><layer-list android:paddingMode="stack">
+            <item android:left="8dp" android:top="8dp"><shape><solid android:color="@color/border"/></shape></item>
+            <item android:left="6dp" android:top="6dp" android:right="2dp" android:bottom="2dp"><shape><solid android:color="@color/card"/><stroke android:width="3dp" android:color="@color/border"/></shape></item>
+        </layer-list></item>
+    <item><layer-list android:paddingMode="stack">
+            <item android:left="8dp" android:top="8dp"><shape><solid android:color="@color/border"/></shape></item>
+            <item android:right="8dp" android:bottom="8dp"><shape><solid android:color="@color/card"/><stroke android:width="3dp" android:color="@color/border"/></shape></item>
+        </layer-list></item>
+</selector>
