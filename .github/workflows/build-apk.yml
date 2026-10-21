@@ -1,0 +1,27 @@
+name: Build WANG Radio APK
+
+on:
+  push:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 17
+      - uses: gradle/actions/setup-gradle@v4
+      - name: Build APK
+        run: |
+          # works whether the project is at the top or inside a folder
+          cd "$(dirname "$(find . -name gradlew | head -1)")"
+          chmod +x gradlew
+          ./gradlew --no-daemon assembleRelease
+          cp app/build/outputs/apk/release/app-release.apk "$GITHUB_WORKSPACE/WANG-Radio.apk"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: WANG-Radio-apk
+          path: WANG-Radio.apk
