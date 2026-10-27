@@ -48,12 +48,18 @@ In the car you get artwork, song title and artist, play/stop, five ★ buttons, 
 - **1 star:** saves the rating, plays `record_scratch.mp3`, then skips to the next song.
 - **Previously / Up next:** shown under the controls, with artwork.
 
-The three sound effects go in a folder called `assets` next to `radio.py`. These controls change the station itself, so anyone else listening hears the skip too. You'll hear the change about 2–5 seconds after you press the button, because of stream buffering.
+The three sound effects go in a folder called `assets` next to `radio.py`. These controls change the station itself, so anyone else listening hears the skip too. After Next or Back the app reconnects to the stream, so you hear the new song within a second or two instead of after the old song's buffered audio runs out.
 
 ## Star ratings and Plex
 Tap 1–5 stars in the app or the web player (or the ★ buttons in Android Auto). Tapping the same star again clears the rating. The station saves the stars in `ratings.json` (every rating is also logged in `ratings_log.csv`) and copies them to Plex. Songs rated 1–2 stars come up less often and 4–5 stars a bit more; turn that off with `[ratings] influence_rotation = false`. This is one way only: ratings you change in Plex aren't read back.
 
 To connect Plex, fill in the `[plex]` section of `radio.toml` with your Plex address and token. The station log shows "Plex connected" at startup and "Plex: rated …" each time a rating goes through. The station finds each song in Plex by its file path. If Plex sees your music under a different path, for example through a network share, it matches by file name instead.
+
+## Dark mode
+Settings → **This phone → Appearance**: **Match Android** (default; follows the phone's dark theme, including scheduled switching), **Light** or **Dark**. Dark mode keeps the same stamped look, with light ink and borders on near-black paper, and the same orange accent.
+
+## Up next
+Tap **Skip** on the *Up next* row to have the station pick a different song before it plays. Like Next and Back, this changes the station for everyone listening.
 
 ## Look
 The app uses the same parchment-and-charcoal design as the web player: square corners, thick black borders, hard shadows, one orange accent (the play button, your stars, your station, changed settings), Fraunces serif titles and spaced DM Sans capitals. The fonts are built into the app.
