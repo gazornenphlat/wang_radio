@@ -51,6 +51,15 @@ class SettingsActivity : AppCompatActivity() {
         b.unlock.setOnClickListener { unlock() }
         b.adminPassword.setOnEditorActionListener { _, id, _ -> if (id == EditorInfo.IME_ACTION_DONE) unlock(); false }
         b.saveButton.setOnClickListener { save() }
+        paintTheme()
+        listOf(b.themeSystem to "system", b.themeLight to "light", b.themeDark to "dark").forEach { (v, t) ->
+            v.setOnClickListener {
+                if (Prefs.theme(this) == t) return@setOnClickListener
+                Prefs.setTheme(this, t)
+                paintTheme()
+                WangApp.applyTheme(t)          // every open screen redraws in the new colours
+            }
+        }
         b.find.addTextChangedListener(watcher { render() })
 
         onBackPressedDispatcher.addCallback(this, object : OnBackPressedCallback(true) {
@@ -72,6 +81,14 @@ class SettingsActivity : AppCompatActivity() {
     }
 
     // ------------------------------------------------------------------ this phone
+    private fun paintTheme() {
+        val now = Prefs.theme(this)
+        listOf(b.themeSystem to "system", b.themeLight to "light", b.themeDark to "dark").forEach { (v, t) ->
+            v.setBackgroundColor(color(if (t == now) R.color.border else R.color.card))
+            v.setTextColor(color(if (t == now) R.color.card else R.color.muted))
+        }
+    }
+
     private fun saveConnection() {
         Prefs.save(this, b.serverUrl.text.toString(), b.serverKey.text.toString())
         b.serverUrl.setText(Prefs.serverUrl(this))
@@ -287,6 +304,8 @@ class SettingsActivity : AppCompatActivity() {
         val on = changes.containsKey(id)
         r.srBody.setBackgroundColor(color(if (on) R.color.primary else R.color.card))
         r.srHelp.setTextColor(color(if (on) R.color.on_primary else R.color.muted))
+        r.srName.setTextColor(color(if (on) R.color.on_primary else R.color.ink))
+        r.srKind.setTextColor(color(if (on) R.color.on_primary else R.color.ink))
     }
 
     private fun sync() {

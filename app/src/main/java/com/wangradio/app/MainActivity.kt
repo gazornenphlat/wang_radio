@@ -68,6 +68,8 @@ class MainActivity : AppCompatActivity() {
         b.headerBox.setOnClickListener { openStations() }
         starButtons.forEachIndexed { i, btn -> btn.setOnClickListener { setStars(i + 1) } }
         b.nextButton.setOnClickListener { skip("next") }
+        b.nextRow.rowAction.visibility = android.view.View.VISIBLE
+        b.nextRow.rowAction.setOnClickListener { skipUpNext() }
         b.prevButton.setOnClickListener { skip("back") }
         b.prevRow.rowLabel.setText(R.string.label_previous)
         b.nextRow.rowLabel.setText(R.string.label_next)
@@ -225,7 +227,7 @@ class MainActivity : AppCompatActivity() {
     /** Filled cells turn orange with a charcoal star; empty cells stay white with a grey star. */
     private fun paintStars(n: Int) {
         stars = n
-        val on = ColorStateList.valueOf(getColor(R.color.border))
+        val on = ColorStateList.valueOf(getColor(R.color.on_primary))
         val off = ColorStateList.valueOf(getColor(R.color.muted))
         starButtons.forEachIndexed { i, btn ->
             btn.imageTintList = if (i < n) on else off
@@ -256,6 +258,21 @@ class MainActivity : AppCompatActivity() {
                     Toast.makeText(this@MainActivity, getString(R.string.rating_failed, it.message ?: ""), Toast.LENGTH_SHORT).show()
                     api.nowPlaying()?.let { np -> showNowPlaying(np) }
                 }
+        }
+    }
+
+    /** Swap the up-next song before it plays. */
+    private fun skipUpNext() {
+        b.nextRow.rowAction.isEnabled = false
+        lifecycleScope.launch {
+            val t = api.skipUpNext()
+            b.nextRow.rowAction.isEnabled = true
+            if (t == null) {
+                Toast.makeText(this@MainActivity, R.string.upnext_failed, Toast.LENGTH_SHORT).show()
+            } else {
+                showRow(b.nextRow, t)
+                Toast.makeText(this@MainActivity, R.string.upnext_changed, Toast.LENGTH_SHORT).show()
+            }
         }
     }
 

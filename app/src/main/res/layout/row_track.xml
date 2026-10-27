@@ -57,5 +57,23 @@
                 android:maxLines="1"
                 android:textColor="@color/muted" />
         </LinearLayout>
+
+        <!-- only shown on the "up next" row: swap the song before it plays -->
+        <TextView
+            android:id="@+id/row_action"
+            style="@style/Kicker"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:background="@drawable/box_4"
+            android:clickable="true"
+            android:contentDescription="@string/skip_upnext_desc"
+            android:focusable="true"
+            android:paddingStart="14dp"
+            android:paddingTop="12dp"
+            android:paddingEnd="18dp"
+            android:paddingBottom="16dp"
+            android:text="@string/skip_upnext"
+            android:visibility="gone" />
     </LinearLayout>
 </LinearLayout>

@@ -1,5 +1,6 @@
 <resources>
-    <style name="Theme.WangRadio" parent="Theme.Material3.Light.NoActionBar">
+    <!-- Shared by light and dark; values-night/themes.xml only flips the status bar icons. -->
+    <style name="Base.WangRadio" parent="Theme.Material3.DayNight.NoActionBar">
         <item name="colorPrimary">@color/primary</item>
         <item name="colorOnPrimary">@color/on_primary</item>
         <item name="colorSecondary">@color/border</item>
@@ -9,14 +10,17 @@
         <item name="android:windowBackground">@color/surface</item>
         <item name="android:statusBarColor">@color/surface</item>
         <item name="android:navigationBarColor">@color/surface</item>
-        <item name="android:windowLightStatusBar">true</item>
-        <item name="android:windowLightNavigationBar">true</item>
         <item name="android:fontFamily">@font/dmsans</item>
         <item name="fontFamily">@font/dmsans</item>
         <item name="android:textColor">@color/ink</item>
         <item name="android:textColorHint">@color/muted</item>
         <item name="colorControlActivated">@color/border</item>
         <item name="android:textCursorDrawable">@null</item>
+    </style>
+
+    <style name="Theme.WangRadio" parent="Base.WangRadio">
+        <item name="android:windowLightStatusBar">true</item>
+        <item name="android:windowLightNavigationBar">true</item>
     </style>
 
     <!-- Uppercase micro-label: DM Sans Bold, 0.2em tracking. Never lowercase it. -->

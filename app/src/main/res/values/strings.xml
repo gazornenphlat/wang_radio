@@ -66,6 +66,14 @@
     <string name="server_url_hint">https://xxxx.trycloudflare.com</string>
     <string name="server_key">Password (key)</string>
     <string name="settings_help">Tip: tap \"Open in WANG Radio\" on the station\'s startup notification and this fills in by itself.</string>
+    <string name="appearance">Appearance</string>
+    <string name="theme_system">Match Android</string>
+    <string name="theme_light">Light</string>
+    <string name="theme_dark">Dark</string>
+    <string name="skip_upnext">Skip</string>
+    <string name="skip_upnext_desc">Pick a different song to play next</string>
+    <string name="upnext_changed">Up next changed</string>
+    <string name="upnext_failed">Couldn\'t change up next</string>
     <string name="save_connection">Save connection</string>
     <string name="connection_saved">Connection saved</string>
     <string name="find_setting">Find a setting…</string>

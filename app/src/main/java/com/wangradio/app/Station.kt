@@ -26,6 +26,12 @@ object Prefs {
 
     fun isConfigured(ctx: Context) = serverUrl(ctx).isNotEmpty()
 
+    /** "system" (follow Android), "light" or "dark". */
+    fun theme(ctx: Context): String = ctx.getSharedPreferences(FILE, 0).getString("theme", "system")!!
+    fun setTheme(ctx: Context, theme: String) {
+        ctx.getSharedPreferences(FILE, 0).edit().putString("theme", theme).apply()
+    }
+
     /** [stream] admin_password from radio.toml, needed to change settings from outside the house. */
     fun admin(ctx: Context): String = ctx.getSharedPreferences(FILE, 0).getString("admin", "")!!
     fun setAdmin(ctx: Context, pw: String) {
@@ -159,6 +165,19 @@ class StationApi(private val ctx: Context) {
             c.outputStream.use { it.write(ByteArray(0)) }
             c.responseCode in 200..299
         }.getOrDefault(false)
+    }
+
+    /** Swaps the up-next song for another one. Returns the new up-next song. */
+    suspend fun skipUpNext(): TrackRef? = withContext(Dispatchers.IO) {
+        runCatching {
+            val c = URL(withKey("/skip", "dir=upnext")).openConnection() as HttpURLConnection
+            c.requestMethod = "POST"
+            c.connectTimeout = 8000; c.readTimeout = 8000
+            c.doOutput = true
+            c.outputStream.use { it.write(ByteArray(0)) }
+            if (c.responseCode !in 200..299) return@runCatching null
+            ref(JSONObject(c.inputStream.bufferedReader().readText()).optJSONObject("next"))
+        }.getOrNull()
     }
 
     /** Sets 1-5 stars (0 clears). The station copies it to Plex. Returns the stars now saved. */

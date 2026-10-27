@@ -116,6 +116,29 @@
                         android:importantForAutofill="no"
                         android:inputType="textPassword" />
 
+                    <TextView style="@style/Kicker" android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp" android:text="@string/appearance" />
+                    <LinearLayout
+                        android:id="@+id/theme_group"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:background="@drawable/field"
+                        android:divider="@drawable/divider_v"
+                        android:orientation="horizontal"
+                        android:padding="3dp"
+                        android:showDividers="middle">
+                        <TextView android:id="@+id/theme_system" style="@style/Kicker" android:layout_width="0dp"
+                            android:layout_height="wrap_content" android:layout_weight="1" android:gravity="center"
+                            android:paddingVertical="14dp" android:text="@string/theme_system" />
+                        <TextView android:id="@+id/theme_light" style="@style/Kicker" android:layout_width="0dp"
+                            android:layout_height="wrap_content" android:layout_weight="1" android:gravity="center"
+                            android:paddingVertical="14dp" android:text="@string/theme_light" />
+                        <TextView android:id="@+id/theme_dark" style="@style/Kicker" android:layout_width="0dp"
+                            android:layout_height="wrap_content" android:layout_weight="1" android:gravity="center"
+                            android:paddingVertical="14dp" android:text="@string/theme_dark" />
+                    </LinearLayout>
+
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"

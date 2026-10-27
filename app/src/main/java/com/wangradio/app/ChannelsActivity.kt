@@ -92,6 +92,7 @@ class ChannelsActivity : AppCompatActivity() {
             // your current station gets the orange chip and full-colour art; the rest are two-tone
             row.chLive.text = getString(if (mine) R.string.current_station else R.string.live_listeners, c.listeners)
             row.chLive.setBackgroundResource(if (mine) R.drawable.chip_on else R.drawable.chip)
+            row.chLive.setTextColor(getColor(if (mine) R.color.on_primary else R.color.ink))
             row.chArt.colorFilter = if (mine) null
                 else android.graphics.ColorMatrixColorFilter(android.graphics.ColorMatrix().apply { setSaturation(0f) })
             loadArt(row.chArt, c.artUrl)

@@ -355,8 +355,18 @@ class RadioService : MediaLibraryService() {
 
     private fun skip(direction: String) {
         scope.launch {
-            if (!api.skip(direction)) toast(getString(R.string.skip_failed))
-            // The station switches right away; refresh song info a couple of times.
+            if (!api.skip(direction)) {
+                toast(getString(R.string.skip_failed))
+            } else if (player.playWhenReady) {
+                // The station switches at once, but the player still holds a few seconds of the
+                // old song. Reconnect so it jumps straight to the new one.
+                delay(400)
+                player.stop()
+                player.setMediaItem(liveItem())
+                player.prepare()
+                player.play()
+            }
+            // Refresh song info a couple of times.
             delay(1500); refreshNow()
             delay(3000); refreshNow()
         }
